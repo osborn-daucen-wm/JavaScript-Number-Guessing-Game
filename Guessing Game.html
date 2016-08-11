@@ -1,0 +1,53 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>Guessing Game</title>
+</head>
+<body onload="gameStart()">
+<script>
+    var target;
+    var guessType;
+    var guess;
+    var finished = false;
+    var guesses = 0;
+
+    function gameStart() {
+        var randomNumber = Math.random() * 100;
+        var realRandomNumber = Math.floor(randomNumber);
+        target = realRandomNumber + 1;
+
+        while (!finished) {
+            guessType = prompt("I am thinking of a number between 1 and 100. What is the number? ");
+            guess = parseInt(guessType);
+            guesses += 1;
+            finished = check();
+        }
+    }
+
+    function check() {
+        if (isNaN (guess)) {
+            alert("You have not entered a number. Enter a number between 1 and 100.");
+            return false;
+        }
+
+        if ((guess < 1) || (guess > 100)) {
+            alert ("Please enter a number between 1 and 100.");
+            return false;
+        }
+
+        if (guess > target) {
+            alert ("Your number is too large!");
+            return false;
+        }
+
+        if (guess < target) {
+            alert ("Your number is too small!");
+            return false;
+        }
+
+        alert ("You're right! The number was " + target + ". It took you " + guesses + " guesses to get the number!");
+        return true;
+    }
+</script>
+</body>
+</html>
